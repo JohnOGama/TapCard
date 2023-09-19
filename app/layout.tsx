@@ -1,9 +1,7 @@
-"use client";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
-import { usePathname } from "next/navigation";
 
 const inter = Outfit({
   subsets: ["latin"],
@@ -21,7 +19,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
   return (
     <html lang="en">
       <body className={`${inter.className} bg-primary`}>
