@@ -46,7 +46,7 @@ export default function SignIn() {
         Sign In
       </Button>
       <p className="text-primary">
-        Don't have an account?{" "}
+        Don&rsquo;t have an account?{" "}
         <Link href="/sign-up" className="underline">
           Sign Up
         </Link>
