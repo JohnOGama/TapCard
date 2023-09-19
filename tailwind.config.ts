@@ -11,7 +11,10 @@ const config: Config = {
       'primary': '#F1F1F1',
       'secondary': "#2B2C29",
       'standardBg': '#EBEBEB',
-      'designBg': "#DFDFDF"
+      'designBg': "#DFDFDF",
+      'white': "#FFFFFF",
+      'yellow': "#DDC384",
+      'gray': "#333333"
     },
     extend: {
       backgroundImage: {
