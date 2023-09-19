@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Button from "@/components/Button";
 import ShopCart from "@/components/icons/ShopCart";
