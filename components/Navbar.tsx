@@ -33,19 +33,6 @@ const menuVars = {
   },
 };
 
-const staggerMenuVars = {
-  initial: {
-    transition: {
-      staggerChildren: 0.09,
-    },
-  },
-  open: {
-    transition: {
-      staggerChildren: 0.09,
-    },
-  },
-};
-
 const RightSide = () => (
   <div className="md:flex gap-5 items-center hidden">
     <Button
@@ -104,47 +91,46 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
-            variants={menuVars}
-            initial="close"
-            animate="open"
-            exit="exit"
-            className=" md:hidden h-screen  fixed top-0 right-0 bg-primary w-[50%] flex flex-col items-end pr-5 uppercase text-2xl font-semibold pt-[100px] gap-2"
+            onClick={() => setOpen(false)}
+            className=" md:hidden h-screen w-full  fixed top-0 right-0 bg-secondary/50  flex flex-col items-end pr-5 uppercase text-2xl font-semibold  "
           >
-            <Times
-              width="20"
-              className="absolute top-8 right-5 cursor-pointer"
-              onClick={() => setOpen(false)}
-            />
             <motion.div
-              variants={staggerMenuVars}
-              initial="initial"
+              variants={menuVars}
+              initial="close"
               animate="open"
-              className="flex flex-col gap-3 text-right"
+              exit="exit"
+              className="flex flex-col gap-3 text-right bg-primary pt-[100px] px-5  w-[50%] fixed top-0 right-0 h-screen"
             >
+              <Times
+                width="20"
+                className="absolute top-8 right-5 cursor-pointer"
+                onClick={() => setOpen(false)}
+              />
               {navbarLinks.map((link, id) => (
                 <Link
                   href={link.href}
                   key={id}
                   className={`hover:text-yellow duration-300 `}
+                  onClick={() => setOpen(false)}
                 >
                   {link.text}
                 </Link>
               ))}
-            </motion.div>
-            <div className="flex flex-col gap-3 mt-3 ">
               <Button
                 className="mt-0 px-5 text-base font-bold uppercase"
                 variant="secondary"
+                onClick={() => setOpen(false)}
               >
                 <Link href="/sign-in"> Activate</Link>
               </Button>
               <Button
-                className="border-2  border-secondary text-secondary mt-0 px-4 flex-shrink-0 text-base font-bold uppercase "
+                className="border-[1px]  border-secondary text-secondary mt-0 flex-shrink-0 text-base font-bold uppercase "
                 variant="ghost"
+                onClick={() => setOpen(false)}
               >
                 <Link href="/sign-up"> Sign Up</Link>
               </Button>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
