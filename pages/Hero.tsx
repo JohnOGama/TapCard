@@ -1,9 +1,11 @@
 import Image from "next/image";
 import CardBlack from "@/public/Cards/black.png";
+import Link from "next/link";
+
+// components
 import Title from "@/components/Title";
 import Paragraph from "@/components/Paragraph";
 import Button from "@/components/Button";
-import Link from "next/link";
 
 export default function Hero() {
   return (
