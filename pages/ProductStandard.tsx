@@ -4,7 +4,7 @@ import Title from "@/components/Title";
 // images
 import SHIELD from "@/public/blue Icons/Shield.png";
 import CLICK from "@/public/blue Icons/Click.png";
-import LEAVES from "@/public/blue Icons/leaves.png";
+import LEAVES from "@/public/blue Icons/Leaves.png";
 import Image from "next/image";
 import Button from "@/components/Button";
 
