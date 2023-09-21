@@ -60,7 +60,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   return (
-    <div className="bg-secondary p-5 w-full fixed top-0 z-10">
+    <div className="bg-secondary p-5 w-full fixed top-0 z-10 ">
       <nav className="flex justify-between items-center max-w-[1200px] mx-auto">
         <Link href="/" className="text-primary font-bold text-2xl">
           LOGO

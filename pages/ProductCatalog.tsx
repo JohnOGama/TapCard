@@ -3,13 +3,13 @@ import React from "react";
 // components
 import Paragraph from "@/components/Paragraph";
 import Title from "@/components/Title";
+import Button from "@/components/Button";
 
 // card images
 import WCARD from "@/public/Cards/white.png";
 import BCARD from "@/public/Cards/gray.png";
 import PCARD from "@/public/Cards/pink.png";
 import Image from "next/image";
-import Button from "@/components/Button";
 
 const CardsProducts = [
   {
@@ -33,7 +33,7 @@ export default function ProductCatalog() {
   return (
     <div className="max-w-[1200px] mx-auto mt-10 mb-20">
       <div className="text-center my-[70px]">
-        <Title className="mb-0 text-3xl md:text-4xl lg:text-5xl lg:leading-[60px]">
+        <Title className="mb-0 ">
           Revolutionize Your <br className="sm:hidden" /> Business Cards
           <br className="hidden sm:block" /> with Tap{" "}
           <br className="sm:hidden" /> Technology
