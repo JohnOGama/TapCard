@@ -20,7 +20,7 @@ export default function Hero() {
             className="sm:w-[420px] md:w-[560px] lg:w-[650px] lg:-ml-20"
           />
           <div className="text-center lg:text-left text-primary  md:-mt-16">
-            <Title className="text-2xl md:text-4xl md:mb-5 lg:text-left lg:mb-2">
+            <Title className="text-3xl md:text-4xl md:mb-5 lg:text-left lg:mb-2">
               Seamless Connections, <br />
               One Tap Away!
             </Title>

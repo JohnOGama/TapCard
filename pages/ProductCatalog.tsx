@@ -33,13 +33,14 @@ export default function ProductCatalog() {
   return (
     <div className="max-w-[1200px] mx-auto mt-10 mb-20">
       <div className="text-center my-[70px]">
-        <Title className="mb-0 md:text-4xl ">
-          Revolutionize Your Business Cards
-          <br /> with Tap Technology
+        <Title className="mb-0 text-3xl md:text-4xl lg:text-5xl lg:leading-[60px]">
+          Revolutionize Your <br className="sm:hidden" /> Business Cards
+          <br className="hidden sm:block" /> with Tap{" "}
+          <br className="sm:hidden" /> Technology
         </Title>
         <Paragraph
           description="Make your presence felt"
-          className="md:text-lg mt-2 lg:text-xl"
+          className="md:text-lg mt-2 lg:text-2xl text-lg"
         />
       </div>
       <div className="flex flex-col md:flex-row md:mt-5 justify-center items-center text-secondary -mt-16">
