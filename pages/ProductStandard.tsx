@@ -44,7 +44,10 @@ export default function ProductStandard() {
         </div>
         <div className="flex flex-col items-center gap-5 md:flex-row md:my-10 md:mx-5 justify-center">
           {ProductStandards.map((prod, index) => (
-            <div className="flex flex-col items-center bg-primary/70 justify-center p-4 w-[300px] h-[200px]  shadow-md rounded lg:h-auto lg:w-[500px] lg:py-[40px] text-center">
+            <div
+              key={index}
+              className="flex flex-col items-center bg-primary/70 justify-center p-4 w-[300px] h-[200px]  shadow-md rounded lg:h-auto lg:w-[500px] lg:py-[40px] text-center"
+            >
               <Image src={prod.img} alt={prod.title} />
               <Title className="text-xl mt-4 md:text-lg lg:text-xl">
                 {prod.title}
