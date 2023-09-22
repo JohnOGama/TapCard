@@ -26,7 +26,7 @@ export default function Hero() {
             </Title>
             <Paragraph
               description="Effortless NFC Scanning for Instant Connections!"
-              className="text-sm md:text-base lg:text-left lg:text-lg "
+              className="text-sm md:text-base lg:text-left lg:text-lg text-primary"
             />
             <Button
               rounded

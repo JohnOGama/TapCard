@@ -13,14 +13,14 @@ export default function ProductCatalog() {
   return (
     <div className="max-w-[1200px] mx-auto mt-10 mb-20">
       <div className="text-center my-[70px]">
-        <Title className="mb-0 ">
+        <Title className="mb-0 text-secondary">
           Revolutionize Your <br className="sm:hidden" /> Business Cards
           <br className="hidden sm:block" /> with Tap{" "}
           <br className="sm:hidden" /> Technology
         </Title>
         <Paragraph
           description="Make your presence felt"
-          className="md:text-lg mt-2 lg:text-2xl text-lg"
+          className="md:text-lg mt-2 lg:text-2xl text-lg text-secondary"
         />
       </div>
       <div className="flex flex-col md:flex-row md:mt-5 justify-center items-center text-secondary -mt-16">
@@ -34,12 +34,12 @@ export default function ProductCatalog() {
                 key={index}
                 className="lg:-mt-12"
               />
-              <Title className="mb-0 -mt-16 font-bold lg:text-3xl">
+              <Title className="mb-0 -mt-16 font-bold lg:text-3xl ">
                 {card.price}
               </Title>
               <Paragraph
                 description={card.type}
-                className="font-semibold lg:text-base"
+                className="font-semibold lg:text-base lg:text-primary"
               />
               <input
                 type="text"

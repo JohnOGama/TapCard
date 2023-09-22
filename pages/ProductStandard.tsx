@@ -13,13 +13,16 @@ export default function ProductStandard() {
     <div className="w-full bg-standardBg py-12 lg:pb-[150px]">
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center pb-10">
-          <Title className="mb-2">
+          <Title className="mb-2 text-secondary">
             Your Ultimate Security <br className="md:hidden" />
             Solution
             <br className="hidden md:block" /> For Unparalleled
             <br className="md:hidden" /> Utility
           </Title>
-          <Paragraph description="Unmatched Utility and Security in One Card" />
+          <Paragraph
+            description="Unmatched Utility and Security in One Card"
+            className="text-secondary"
+          />
         </div>
         <div className="flex flex-col items-center gap-5 md:flex-row md:my-10 md:mx-5 justify-center">
           {ProductStandards.map((prod, index) => (

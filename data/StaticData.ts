@@ -66,4 +66,16 @@ export const ProductStandards = [
     },
 ];
 
+export const ClientCardDesc = [
+  {
+    desc: "Our team of skilled designers brings creativity and innovation to every card design. "
+  },
+  {
+    desc: "We believe in delivering not just business cards but works of art. That's why we invest in cutting-edge printing technology and premium quality cardstock."
+  },
+  {
+    desc: "As pioneers in the transition from traditional paper business cards to digital alternatives, we offer the best of both worlds. "
+  }
+]
+
 
