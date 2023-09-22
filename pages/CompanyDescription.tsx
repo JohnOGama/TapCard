@@ -20,7 +20,7 @@ export default function CompanyDescription() {
               <Paragraph
                 key={index}
                 description={desc.desc}
-                className="lg:pr-[400px]"
+                className="lg:pr-[400px] text-primary"
               />
             ))}
           </div>

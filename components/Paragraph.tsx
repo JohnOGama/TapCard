@@ -8,7 +8,9 @@ type ParagraphProps = {
 
 export default function Paragraph({ description, className }: ParagraphProps) {
   return (
-    <p className={cn("text-sm md:text-lg lg:text-xl", className)}>
+    <p
+      className={cn("text-sm md:text-lg lg:text-xl text-secondary", className)}
+    >
       {description}
     </p>
   );
