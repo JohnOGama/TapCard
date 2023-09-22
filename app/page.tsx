@@ -15,6 +15,7 @@ export default function Home() {
         <CompanyDescription />
         <TrustedBrands />
         <ClientDesign />
+        <TrustedBrands />
       </main>
     </>
   );
