@@ -17,7 +17,11 @@ export default function CompanyDescription() {
           </Title>
           <div className="flex flex-col gap-5 lg:gap-6 mt-5">
             {Descriptiion.map((desc, index) => (
-              <Paragraph description={desc.desc} className="lg:pr-[400px]" />
+              <Paragraph
+                key={index}
+                description={desc.desc}
+                className="lg:pr-[400px]"
+              />
             ))}
           </div>
         </div>
