@@ -2,36 +2,15 @@ import Paragraph from "@/components/Paragraph";
 import Title from "@/components/Title";
 
 // images
-import SHIELD from "@/public/blue Icons/Shield.png";
-import CLICK from "@/public/blue Icons/Click.png";
-import LEAVES from "@/public/blue Icons/Leaves.png";
 import Image from "next/image";
 import Button from "@/components/Button";
 
-const ProductStandards = [
-  {
-    img: SHIELD,
-    title: "Advanced Encryption",
-    description:
-      "Our Avail Card employs state-of-the-art encryption to safeguard your sensitive data, ensuring your transactions are secure and confidential",
-  },
-  {
-    img: CLICK,
-    title: "Contactless Convenience",
-    description:
-      "Experience the ease of contactless payments and quick transactions with the Avail Card, making your daily purchases faster and hassle-free",
-  },
-  {
-    img: LEAVES,
-    title: "24/7 Fraud Monitoring",
-    description:
-      "Experience the ease of contactless payments and quick transactions with the Avail Card, making your daily purchases faster and hassle-free",
-  },
-];
+// static data
+import { ProductStandards } from "@/data/StaticData";
 
 export default function ProductStandard() {
   return (
-    <div className="w-full bg-standardBg py-12">
+    <div className="w-full bg-standardBg py-12 lg:pb-[150px]">
       <div className="max-w-[1200px] mx-auto">
         <div className="text-center pb-10">
           <Title className="mb-2">
