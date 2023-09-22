@@ -4,10 +4,6 @@ import path from "path";
 import Image from "next/image";
 import Title from "@/components/Title";
 
-interface Props {
-  imageFilenames: string[];
-}
-
 export default async function TrustedBrands() {
   const imageDirectory = path.join(process.cwd(), "/public/Brands logo");
   const imageFilenames = await fs.readdir(imageDirectory);
