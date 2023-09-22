@@ -4,30 +4,10 @@ import React from "react";
 import Paragraph from "@/components/Paragraph";
 import Title from "@/components/Title";
 import Button from "@/components/Button";
-
-// card images
-import WCARD from "@/public/Cards/white.png";
-import BCARD from "@/public/Cards/gray.png";
-import PCARD from "@/public/Cards/pink.png";
 import Image from "next/image";
 
-const CardsProducts = [
-  {
-    img: WCARD,
-    price: "Php 1200.00",
-    type: "Standard Card",
-  },
-  {
-    img: BCARD,
-    price: "Php 1200.00",
-    type: "Professional Card",
-  },
-  {
-    img: PCARD,
-    price: "Php 1200.00",
-    type: "Premium Card",
-  },
-];
+// static data
+import { CardsProducts } from "@/data/StaticData";
 
 export default function ProductCatalog() {
   return (
@@ -54,8 +34,13 @@ export default function ProductCatalog() {
                 key={index}
                 className="lg:-mt-12"
               />
-              <Title className="mb-0 -mt-16 font-bold ">{card.price}</Title>
-              <Paragraph description={card.type} className="font-semibold" />
+              <Title className="mb-0 -mt-16 font-bold lg:text-3xl">
+                {card.price}
+              </Title>
+              <Paragraph
+                description={card.type}
+                className="font-semibold lg:text-base"
+              />
               <input
                 type="text"
                 placeholder="0"
