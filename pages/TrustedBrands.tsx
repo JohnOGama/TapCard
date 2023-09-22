@@ -4,10 +4,13 @@ import path from "path";
 import Image from "next/image";
 import Title from "@/components/Title";
 
+interface Props {
+  imageFilenames: string[];
+}
+
 export default async function TrustedBrands() {
   const imageDirectory = path.join(process.cwd(), "/public/Brands logo");
   const imageFilenames = await fs.readdir(imageDirectory);
-
   return (
     <div className="hidden lg:block w-full">
       <div className="max-w-[1200px] mx-auto py-16">
@@ -15,7 +18,7 @@ export default async function TrustedBrands() {
           Brands that trust tap Card
         </Title>
         <div className="grid grid-cols-6 gap-10">
-          {imageFilenames.map((logo, index) => (
+          {imageFilenames?.map((logo, index) => (
             <Image
               key={index}
               src={`/Brands logo/${logo}`}
