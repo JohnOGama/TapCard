@@ -4,7 +4,7 @@ import path from "path";
 import Image from "next/image";
 import Title from "@/components/Title";
 
-async function getStaticProps() {
+async function getServerSideProps() {
   const imageDirectory = path.join(process.cwd(), "/public/Brands logo");
   const imageFilenames = await fs.readdir(imageDirectory);
 
@@ -14,7 +14,7 @@ async function getStaticProps() {
 }
 
 export default async function TrustedBrands() {
-  const { imageFilenames } = await getStaticProps();
+  const { imageFilenames } = await getServerSideProps();
 
   return (
     <div className="hidden lg:block w-full">
