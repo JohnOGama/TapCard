@@ -146,23 +146,23 @@ export const FooterContent = [
   {
     title: "Company",
     links: [
-      { label: "About", href: "/about" },
-      { label: "Services", href: "/services" },
-      { label: "Shop", href: "/shop" },
+      { label: "About", href: "/under-construction" },
+      { label: "Services", href: "/serunder-construction" },
+      { label: "Shop", href: "under-construction" },
     ],
   },
   {
     title: "Policies",
     links: [
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Data Privacy", href: "/privacy" },
+      { label: "Terms of Service", href: "/under-construction" },
+      { label: "Data Privacy", href: "/prunder-construction" },
     ],
   },
   {
     title: "Customer Service",
     links: [
-      { label: "Contact Us", href: "/contact" },
-      { label: "Return", href: "/return" },
+      { label: "Contact Us", href: "/counder-construction" },
+      { label: "Return", href: "/runder-construction" },
     ],
   },
   {
