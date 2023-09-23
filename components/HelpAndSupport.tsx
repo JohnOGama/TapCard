@@ -69,8 +69,9 @@ export default function HelpAndSupport() {
               exit={{ opacity: 0, y: 0, transition: { duration: 0.2 } }}
               className="fixed border-2 border-primary/30 bottom-[75px] right-10 bg-secondary flex flex-col  max-w-[300px]  rounded-md "
             >
-              {HelpAndSupportItems.map((item) => (
+              {HelpAndSupportItems.map((item, index) => (
                 <Link
+                  key={index}
                   href="/under-construction"
                   className="flex gap-5 hover:bg-primary/30 px-4 py-4 duration-200"
                 >
