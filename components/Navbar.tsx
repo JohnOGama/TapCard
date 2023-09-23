@@ -115,6 +115,7 @@ export default function Navbar() {
               className="flex flex-col gap-3 text-right bg-primary pt-[100px] px-5  w-[50%] fixed top-0 right-0 h-screen"
             >
               <Times
+                color="#2B2C29"
                 width="20"
                 className="absolute top-8 right-5 cursor-pointer"
                 onClick={() => setOpen(false)}
