@@ -16,6 +16,7 @@ import { navbarLinks } from "@/lib/helper";
 
 // framer
 import { motion, AnimatePresence } from "framer-motion";
+import Logo from "./icons/Logo";
 
 const menuVars = {
   close: {
@@ -70,8 +71,12 @@ export default function Navbar() {
   return (
     <div className="bg-secondary p-5 w-full fixed top-0 z-10 ">
       <nav className="flex justify-between items-center max-w-[1200px] mx-auto">
-        <Link href="/" className="text-primary font-bold text-2xl">
-          LOGO
+        <Link
+          href="/"
+          className="text-primary font-bold text-2xl"
+          style={{ display: "flex" }}
+        >
+          <Logo width="160" height="50" variant="white" />
         </Link>
         <MenuIcon
           width="20"
