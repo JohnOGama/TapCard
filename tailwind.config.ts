@@ -20,6 +20,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'bg1': "url('../public/Background Images/Background1.png')",
+        'bg2': "url('../public/Background Images/Background2.png')"
       },
     },
   },

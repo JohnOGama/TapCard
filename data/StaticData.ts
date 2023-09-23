@@ -78,4 +78,102 @@ export const ClientCardDesc = [
   }
 ]
 
+import ICON1 from "@/public/Testimonial Icons/Ellipse 3.png"
+import ICON2 from "@/public/Testimonial Icons/Ellipse 4.png"
+import ICON3 from "@/public/Testimonial Icons/Ellipse 5.png"
+
+export const Testimonials =[
+  {
+    image: ICON1,
+    name: "Emily Johnson",
+    role: "CEO of Facebook",
+    star: 5,
+    desc: "I was blown away by  the quality and design of the business cards I received from Tap To Connect. They truly understand the importance of making a lasting impression."
+  },
+  {
+    image: ICON2,
+    name: "Emily Johnson",
+    role: "CEO of Facebook",
+    star: 5,
+    desc: "Switching to Tap To Connect's digital business cards was a game-changer for my startup. The innovation they bring to the table is impressive. "
+  },
+  {
+    image: ICON3,
+    name: "Emily Johnson",
+    role: "CEO of Facebook",
+    star: 5,
+    desc: "Our company decided to upgrade our business cards, and we turned to Tap To Connect. Their attention to detail and commitment to quality were evident from the start. "
+  },
+]
+
+
+import BLOG1 from "@/public/Blogs picture/Rectangle 39.png"
+import BLOG2 from "@/public/Blogs picture/Rectangle 40.png"
+import BLOG3 from "@/public/Blogs picture/Rectangle 43.png"
+import BLOG4 from "@/public/Blogs picture/Rectangle 46.png"
+
+export const BlogsContent = [
+  {
+    image: BLOG1,
+    title: "Exploring the World of Cards: Insights, Trends, and More",
+    desc: "Embark on a Journey through the Evolving World of Cards, from Traditional to Cutting-Edge Solutions and Everything in Between."
+  },
+  {
+    image: BLOG2,
+    title: "Unveiling In-Depth Insights into the Card Business: Strategies, Tips, and Industry Trends",
+    desc: "Unlock a Treasure Trove of Invaluable Strategies, Expert Tips, and In-Depth Industry Trends to Stay Ahead in the Dynamic World of Card-Based"
+  },
+  {
+    image: BLOG3,
+    title: "Exploring the World of Cards: Insights, Trends, and More",
+    desc: "Embark on a Journey through the Evolving World of Cards, from Traditional to Cutting-Edge Solutions and Everything in Between."
+  },
+  {
+    image: BLOG4,
+    title: "Exploring the World of Cards: Insights, Trends, and More",
+    desc: "Embark on a Journey through the Evolving World of Cards, from Traditional to Cutting-Edge Solutions and Everything in Between."
+  },
+]
+
+
+import FB from "@/public/Social Media/fb.png"
+import IG from "@/public/Social Media/ig.png"
+import TIKTOK from "@/public/Social Media/tiktok.png"
+
+// staticData.ts (or your preferred file name)
+
+export const FooterContent = [
+  {
+    title: "Company",
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Services", href: "/services" },
+      { label: "Shop", href: "/shop" },
+    ],
+  },
+  {
+    title: "Policies",
+    links: [
+      { label: "Terms of Service", href: "/terms" },
+      { label: "Data Privacy", href: "/privacy" },
+    ],
+  },
+  {
+    title: "Customer Service",
+    links: [
+      { label: "Contact Us", href: "/contact" },
+      { label: "Return", href: "/return" },
+    ],
+  },
+  {
+    title: "Follow Us",
+    socialMedia: [
+      { label: FB },
+      { label: IG },
+      { label: TIKTOK },
+    ],
+  },
+];
+
+
 
