@@ -26,12 +26,14 @@ export default function ProductCatalog() {
       <div className="flex flex-col md:flex-row md:mt-5 justify-center items-center text-secondary -mt-16">
         {CardsProducts.map((card, index) => (
           <>
-            <div className="flex flex-col items-center justify-center lg:bg-secondary lg:m-3 lg:text-primary lg:pt-5 lg:pb-[50px] rounded-md lg:hover:scale-105 duration-300 lg:hover:shadow-secondary lg:hover:shadow-xl">
+            <div
+              key={index}
+              className="flex flex-col items-center justify-center lg:bg-secondary lg:m-3 lg:text-primary lg:pt-5 lg:pb-[50px] rounded-md lg:hover:scale-105 duration-300 lg:hover:shadow-secondary lg:hover:shadow-xl"
+            >
               <Image
                 src={card.img}
                 alt={card.type}
                 quality={100}
-                key={index}
                 className="lg:-mt-12"
               />
               <Title className="mb-0 -mt-16 font-bold lg:text-3xl ">

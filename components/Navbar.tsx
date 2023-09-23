@@ -1,12 +1,20 @@
 "use client";
-import Link from "next/link";
+import { useState } from "react";
+
+// components
 import Button from "@/components/Button";
 import ShopCart from "@/components/icons/ShopCart";
 import MenuIcon from "@/components/icons/Menu";
-import { usePathname } from "next/navigation";
-import { navbarLinks } from "@/lib/helper";
-import { useState } from "react";
 import Times from "./icons/Times";
+
+// next
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+
+// libs
+import { navbarLinks } from "@/lib/helper";
+
+// framer
 import { motion, AnimatePresence } from "framer-motion";
 
 const menuVars = {
