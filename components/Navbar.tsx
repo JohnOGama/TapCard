@@ -42,29 +42,6 @@ const menuVars = {
   },
 };
 
-const RightSide = () => (
-  <div className="md:flex gap-5 items-center hidden">
-    <Button
-      className="border-2 border-primary mt-0 px-5 text-base font-bold uppercase md:text-xs lg:text-base"
-      variant="primary"
-    >
-      <Link href="/sign-in"> Activate</Link>
-    </Button>
-    <Button
-      className="border-2  border-primary mt-0 px-5 flex-shrink-0 text-base font-bold uppercase lg:text-base md:text-xs text-primary"
-      variant="ghost"
-    >
-      <Link href="/sign-up"> Sign Up</Link>
-    </Button>
-    <div className=" relative bg-primary rounded-full h-9 w-9 flex items-center justify-center">
-      <ShopCart className="cursor-pointer mt-1" width="24" color="black" />
-      <span className="absolute bg-secondary text-xs text-center rounded-full text-primary h-5 w-5 -top-2 -right-2 ">
-        0
-      </span>
-    </div>
-  </div>
-);
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -95,10 +72,31 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-        {pathname === "/sign-in" || pathname === "/sign-up" ? (
-          ""
-        ) : (
-          <RightSide />
+        {pathname === "/sign-in" || pathname === "/sign-up" ? null : (
+          <div className="md:flex gap-5 items-center hidden">
+            <Button
+              className="border-2 border-primary mt-0 px-5 text-base font-bold uppercase md:text-xs lg:text-base"
+              variant="primary"
+            >
+              <Link href="/sign-in"> Activate</Link>
+            </Button>
+            <Button
+              className="border-2  border-primary mt-0 px-5 flex-shrink-0 text-base font-bold uppercase lg:text-base md:text-xs text-primary"
+              variant="ghost"
+            >
+              <Link href="/sign-up"> Sign Up</Link>
+            </Button>
+            <div className=" relative bg-primary rounded-full h-9 w-9 flex items-center justify-center">
+              <ShopCart
+                className="cursor-pointer mt-1"
+                width="24"
+                color="black"
+              />
+              <span className="absolute bg-secondary text-xs text-center rounded-full text-primary h-5 w-5 -top-2 -right-2 ">
+                0
+              </span>
+            </div>
+          </div>
         )}
       </nav>
       <AnimatePresence>
