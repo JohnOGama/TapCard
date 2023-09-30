@@ -33,7 +33,7 @@ export default function Hero() {
               variant="primary"
               className="md:px-10 md:py-2 md:text-lg md:font-bold lg:px-5 lg:py-1"
             >
-              <Link href="/sign-in">Try It Now</Link>
+              <Link href="/">Try It Now</Link>
             </Button>
           </div>
         </div>

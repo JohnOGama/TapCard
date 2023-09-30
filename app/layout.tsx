@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import HelpAndSupport from "@/components/HelpAndSupport";
 import dynamic from "next/dynamic";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const NoSSR = dynamic(() => import("@/components/Navbar"), { ssr: false });
 
@@ -33,6 +35,7 @@ export default function RootLayout({
           {children}
           <HelpAndSupport />
         </main>
+        <ToastContainer />
       </body>
     </html>
   );

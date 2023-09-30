@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Key from "./icons/Key";
 import Button from "./Button";
 import Link from "next/link";
@@ -9,7 +9,9 @@ import Input from "./Input";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "@/api/auth/auth";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
+import { useMeStore } from "@/store/useMeStore";
+import { toast } from "react-toastify";
 
 interface UserFormData {
   FirstName: string;
@@ -20,6 +22,11 @@ interface UserFormData {
 }
 
 const SignUpForm: React.FC = () => {
+  const {
+    displayName,
+    email: userEmail,
+    setUserDetails,
+  } = useMeStore((state) => state);
   const {
     register,
     handleSubmit,
@@ -39,13 +46,21 @@ const SignUpForm: React.FC = () => {
       setUser(userCredential);
       await updateProfile(userCredential.user, { displayName: data.FirstName });
     } catch (error: any) {
-      console.log(error.message);
-      setError(error.message);
       if (error.message) {
-        setError("Email already exists");
+        console.log(error.message);
+        toast.error(error.message, {
+          position: "bottom-left",
+          theme: "dark",
+        });
       }
     }
   };
+
+  useEffect(() => {
+    if (displayName) {
+      redirect("/");
+    }
+  }, [displayName]);
 
   return (
     <form

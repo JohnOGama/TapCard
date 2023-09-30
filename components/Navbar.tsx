@@ -13,6 +13,7 @@ import Link from "next/link";
 
 // libs
 import { navbarLinks } from "@/lib/helper";
+import { useRouter } from "next/navigation";
 
 // framer
 import { motion, AnimatePresence } from "framer-motion";
@@ -43,15 +44,44 @@ const menuVars = {
   },
 };
 
+const dropdownVar = {
+  close: {
+    opacity: 0,
+    y: -10,
+  },
+  open: {
+    opacity: 1,
+    y: 0,
+  },
+  exit: {
+    opacity: 0,
+    y: -2,
+  },
+};
+
+interface User {
+  email?: string | null;
+  displayName?: string | null;
+}
+
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const [open, setOpen] = useState<boolean>(false);
+  const [profileModal, setProfileModal] = useState<boolean>(false);
   const pathname = usePathname();
-  const displayName = useMeStore((state) => state.displayName);
-  const [userDisplayName, setUserDisplayName] = useState<string | null>(null);
+  const displayName = useMeStore((state) => state);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [userDisplayName, setUserDisplayName] = useState<User>({
+    email: "",
+    displayName: "",
+  });
 
   useEffect(() => {
-    setUserDisplayName(displayName);
-  }, []);
+    setUserDisplayName({
+      displayName: displayName.displayName,
+      email: displayName.email,
+    });
+  }, [displayName]);
 
   return (
     <div className="bg-secondary p-5 w-full fixed top-0 z-10 ">
@@ -69,7 +99,11 @@ export default function Navbar() {
           className="cursor-pointer md:hidden"
           onClick={() => setOpen(true)}
         />
-        <div className="hidden md:flex text-primary md:gap-6 lg:gap-14 lg:-ml-[120px] uppercase font-semibold lg:items-center md:text-sm lg:text-base">
+        <div
+          className={`hidden md:flex text-primary md:gap-6 lg:gap-14 lg:-ml-[120px] uppercase font-semibold lg:items-center md:text-sm lg:text-base ${
+            userDisplayName.displayName && "lg:-ml-[260px]"
+          }`}
+        >
           {navbarLinks.map((link, id) => (
             <Link
               href={link.href}
@@ -82,9 +116,32 @@ export default function Navbar() {
         </div>
         {pathname === "/sign-in" || pathname === "/sign-up" ? null : (
           <div className="md:flex gap-5 items-center hidden">
-            {userDisplayName ? (
+            {userDisplayName.displayName ? (
               <div className="flex gap-5 items-center">
-                <h1 className="text-primary">{userDisplayName}</h1>
+                <div className="text-primary md:relative">
+                  <motion.h1
+                    onClick={() => setProfileModal(!profileModal)}
+                    whileTap={{ scale: 1.1 }}
+                    className="md:cursor-pointer"
+                  >
+                    {userDisplayName.displayName}
+                  </motion.h1>
+                  <AnimatePresence>
+                    {profileModal && (
+                      <motion.div
+                        variants={dropdownVar}
+                        initial="close"
+                        animate="open"
+                        exit="exit"
+                        className=" px-4 lg:w-[100px] py-1  bg-standardBg md:absolute md:top-10 md:-left-[30px] text-secondary"
+                      >
+                        <h1>Profile</h1>
+                        <h1>Settings</h1>
+                        <h1>Sign Out</h1>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
                 <div className="relative bg-primary rounded-full h-9 w-9 flex items-center justify-center">
                   <ShopCart
                     className="cursor-pointer mt-1"
@@ -110,6 +167,7 @@ export default function Navbar() {
                 >
                   <Link href="/sign-up"> Sign Up</Link>
                 </Button>
+
                 <div className="relative bg-primary rounded-full h-9 w-9 flex items-center justify-center">
                   <ShopCart
                     className="cursor-pointer mt-1"
