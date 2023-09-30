@@ -11,19 +11,17 @@ import Footer from "@/pages/Footer";
 export default function Home() {
   return (
     <>
-      <main>
-        <Hero />
-        <ProductCatalog />
-        <ProductStandard />
-        <CompanyDescription />
-        <TrustedBrands />
-        <ClientDesign />
-        <Testimonial />
-        <Blogs />
-        <footer>
-          <Footer />
-        </footer>
-      </main>
+      <Hero />
+      <ProductCatalog />
+      <ProductStandard />
+      <CompanyDescription />
+      <TrustedBrands />
+      <ClientDesign />
+      <Testimonial />
+      <Blogs />
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 }

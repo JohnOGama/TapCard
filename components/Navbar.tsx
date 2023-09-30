@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // components
 import Button from "@/components/Button";
@@ -17,6 +17,7 @@ import { navbarLinks } from "@/lib/helper";
 // framer
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "./icons/Logo";
+import { useMeStore } from "@/store/useMeStore";
 
 const menuVars = {
   close: {
@@ -45,9 +46,16 @@ const menuVars = {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const displayName = useMeStore((state) => state.displayName);
+  const [userDisplayName, setUserDisplayName] = useState<string | null>(null);
+
+  useEffect(() => {
+    setUserDisplayName(displayName);
+  }, []);
+
   return (
     <div className="bg-secondary p-5 w-full fixed top-0 z-10 ">
-      <nav className="flex justify-between items-center max-w-[1200px] mx-auto">
+      <div className="flex justify-between items-center max-w-[1200px] mx-auto">
         <Link
           href="/"
           className="text-primary font-bold text-2xl"
@@ -74,31 +82,49 @@ export default function Navbar() {
         </div>
         {pathname === "/sign-in" || pathname === "/sign-up" ? null : (
           <div className="md:flex gap-5 items-center hidden">
-            <Button
-              className="border-2 border-primary mt-0 px-5 text-base font-bold uppercase md:text-xs lg:text-base"
-              variant="primary"
-            >
-              <Link href="/sign-in"> Activate</Link>
-            </Button>
-            <Button
-              className="border-2  border-primary mt-0 px-5 flex-shrink-0 text-base font-bold uppercase lg:text-base md:text-xs text-primary"
-              variant="ghost"
-            >
-              <Link href="/sign-up"> Sign Up</Link>
-            </Button>
-            <div className=" relative bg-primary rounded-full h-9 w-9 flex items-center justify-center">
-              <ShopCart
-                className="cursor-pointer mt-1"
-                width="24"
-                color="black"
-              />
-              <span className="absolute bg-secondary text-xs text-center rounded-full text-primary h-5 w-5 -top-2 -right-2 ">
-                0
-              </span>
-            </div>
+            {userDisplayName ? (
+              <div className="flex gap-5 items-center">
+                <h1 className="text-primary">{userDisplayName}</h1>
+                <div className="relative bg-primary rounded-full h-9 w-9 flex items-center justify-center">
+                  <ShopCart
+                    className="cursor-pointer mt-1"
+                    width="24"
+                    color="black"
+                  />
+                  <span className="absolute bg-secondary text-xs text-center rounded-full text-primary h-5 w-5 -top-2 -right-2 ">
+                    0
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <div className="flex gap-5">
+                <Button
+                  className="border-2 border-primary mt-0 px-5 text-base font-bold uppercase md:text-xs lg:text-base"
+                  variant="primary"
+                >
+                  <Link href="/sign-in"> Activate</Link>
+                </Button>
+                <Button
+                  className="border-2  border-primary mt-0 px-5 flex-shrink-0 text-base font-bold uppercase lg:text-base md:text-xs text-primary"
+                  variant="ghost"
+                >
+                  <Link href="/sign-up"> Sign Up</Link>
+                </Button>
+                <div className="relative bg-primary rounded-full h-9 w-9 flex items-center justify-center">
+                  <ShopCart
+                    className="cursor-pointer mt-1"
+                    width="24"
+                    color="black"
+                  />
+                  <span className="absolute bg-secondary text-xs text-center rounded-full text-primary h-5 w-5 -top-2 -right-2 ">
+                    0
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
         )}
-      </nav>
+      </div>
       <AnimatePresence>
         {open && (
           <motion.div
