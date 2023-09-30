@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Key from "./icons/Key";
 import Link from "next/link";
 import Button from "./Button";
@@ -8,34 +8,58 @@ import Title from "./Title";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/api/auth/auth";
 import Input from "./Input";
-import { useRouter } from "next/navigation";
+import { useRouter, redirect } from "next/navigation";
 import { useMeStore } from "@/store/useMeStore";
+import { toast } from "react-toastify";
 
 const SignInForm: React.FC = () => {
-  const { displayName, setDisplayName } = useMeStore((state) => state);
+  const {
+    displayName,
+    email: userEmail,
+    setUserDetails,
+  } = useMeStore((state) => state);
   const [user, setUser] = useState<any>();
   const router = useRouter();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
   const SignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const userLogin = await signInWithEmailAndPassword(auth, email, password);
-      setUser(userLogin.user.displayName);
-      setDisplayName(userLogin.user.displayName);
+      const user = await signInWithEmailAndPassword(auth, email, password);
+      setUser(user);
+      setUserDetails({
+        displayName: user.user.displayName,
+        email: user.user.email,
+      });
+      if (user.operationType === "signIn") {
+        console.log("first");
+        toast.success("success login", {
+          position: "bottom-left",
+          theme: "dark",
+        });
+      }
+
+      router.push("/");
+      router.refresh();
     } catch (error: any) {
       if (error.message === error.message) {
-        console.log(error);
+        toast.error("Authentication Invalid", {
+          position: "bottom-left",
+          theme: "dark",
+        });
       }
     }
   };
 
-  if (user) {
-    console.log("log in");
-  }
+  useEffect(() => {
+    if (displayName) {
+      redirect("/");
+    }
+  }, [displayName]);
 
-  console.log("ds", user);
+  console.log("email", userEmail);
   console.log("displayName", displayName);
 
   return (
