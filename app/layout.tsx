@@ -3,6 +3,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import HelpAndSupport from "@/components/HelpAndSupport";
+import dynamic from "next/dynamic";
+
+const NoSSR = dynamic(() => import("@/components/Navbar"), { ssr: false });
 
 const inter = Outfit({
   subsets: ["latin"],
@@ -23,11 +26,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-primary`}>
-        <HelpAndSupport />
         <header>
           <Navbar />
         </header>
-        {children}
+        <main>
+          {children}
+          <HelpAndSupport />
+        </main>
       </body>
     </html>
   );
