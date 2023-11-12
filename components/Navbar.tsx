@@ -7,6 +7,9 @@ import ShopCart from "@/components/icons/ShopCart";
 import MenuIcon from "@/components/icons/Menu";
 import Times from "./icons/Times";
 
+//store
+import { useMeStore } from "@/store/useMeStore";
+
 // next
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -18,7 +21,11 @@ import { useRouter } from "next/navigation";
 // framer
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "./icons/Logo";
-import { useMeStore } from "@/store/useMeStore";
+
+//firebase
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/api/auth/auth";
+import { toast } from "react-toastify";
 
 const menuVars = {
   close: {
@@ -69,7 +76,7 @@ export default function Navbar() {
   const [open, setOpen] = useState<boolean>(false);
   const [profileModal, setProfileModal] = useState<boolean>(false);
   const pathname = usePathname();
-  const displayName = useMeStore((state) => state);
+  const { isUserLogin, isLogin } = useMeStore((state) => state);
   const [loading, setLoading] = useState<boolean>(false);
   const [userDisplayName, setUserDisplayName] = useState<User>({
     email: "",
@@ -77,11 +84,30 @@ export default function Navbar() {
   });
 
   useEffect(() => {
-    setUserDisplayName({
-      displayName: displayName.displayName,
-      email: displayName.email,
+    onAuthStateChanged(auth, (user) => {
+      setUserDisplayName({
+        displayName: user?.displayName,
+        email: user?.email,
+      });
     });
-  }, [displayName]);
+  }, []);
+
+  async function handleLogOut() {
+    await signOut(auth);
+
+    toast.success("success logout", {
+      position: "bottom-left",
+      theme: "dark",
+    });
+    setProfileModal(!profileModal);
+
+    if (isLogin) {
+      isUserLogin({ isLogin: false });
+      console.log("logged out", isLogin);
+      router.push("/");
+      router.refresh();
+    }
+  }
 
   return (
     <div className="bg-secondary p-5 w-full fixed top-0 z-10 ">
@@ -135,9 +161,15 @@ export default function Navbar() {
                         exit="exit"
                         className=" px-4 lg:w-[100px] py-1  bg-standardBg md:absolute md:top-10 md:-left-[30px] text-secondary"
                       >
-                        <h1>Profile</h1>
+                        <h1>{isLogin}</h1>
+                        <Link
+                          href="/profile"
+                          onClick={() => setProfileModal(!profileModal)}
+                        >
+                          Profile
+                        </Link>
                         <h1>Settings</h1>
-                        <h1>Sign Out</h1>
+                        <button onClick={handleLogOut}>Sign Out</button>
                       </motion.div>
                     )}
                   </AnimatePresence>

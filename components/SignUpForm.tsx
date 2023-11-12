@@ -13,7 +13,7 @@ import { redirect } from "next/navigation";
 import { useMeStore } from "@/store/useMeStore";
 import { toast } from "react-toastify";
 
-interface UserFormData {
+export interface UserFormData {
   FirstName: string;
   LastName: string;
   EmailAddress: string;
@@ -24,6 +24,8 @@ interface UserFormData {
 const SignUpForm: React.FC = () => {
   const {
     displayName,
+    isUserLogin,
+    isLogin,
     email: userEmail,
     setUserDetails,
   } = useMeStore((state) => state);
@@ -43,8 +45,19 @@ const SignUpForm: React.FC = () => {
         data.EmailAddress,
         data.Password
       );
+
       setUser(userCredential);
       await updateProfile(userCredential.user, { displayName: data.FirstName });
+      setUserDetails({
+        displayName: user.user.displayName,
+        email: user.user.email,
+      });
+
+      isUserLogin({ isLogin: true });
+      toast.success("success create an account", {
+        position: "bottom-left",
+        theme: "dark",
+      });
     } catch (error: any) {
       if (error.message) {
         console.log(error.message);
@@ -57,10 +70,10 @@ const SignUpForm: React.FC = () => {
   };
 
   useEffect(() => {
-    if (displayName) {
+    if (isLogin) {
       redirect("/");
     }
-  }, [displayName]);
+  }, []);
 
   return (
     <form

@@ -13,11 +13,7 @@ import { useMeStore } from "@/store/useMeStore";
 import { toast } from "react-toastify";
 
 const SignInForm: React.FC = () => {
-  const {
-    displayName,
-    email: userEmail,
-    setUserDetails,
-  } = useMeStore((state) => state);
+  const { isLogin, setUserDetails, isUserLogin } = useMeStore((state) => state);
   const [user, setUser] = useState<any>();
   const router = useRouter();
 
@@ -29,22 +25,17 @@ const SignInForm: React.FC = () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       setUser(user);
-      setUserDetails({
-        displayName: user.user.displayName,
-        email: user.user.email,
-      });
+
       if (user.operationType === "signIn") {
-        console.log("first");
         toast.success("success login", {
           position: "bottom-left",
           theme: "dark",
         });
+        isUserLogin({ isLogin: true });
       }
-
-      router.push("/");
-      router.refresh();
+      console.log("user is login", isLogin);
     } catch (error: any) {
-      if (error.message === error.message) {
+      if (error.message) {
         toast.error("Authentication Invalid", {
           position: "bottom-left",
           theme: "dark",
@@ -54,13 +45,11 @@ const SignInForm: React.FC = () => {
   };
 
   useEffect(() => {
-    if (displayName) {
+    if (isLogin) {
+      console.log("sign in: Log in", isLogin);
       redirect("/");
     }
-  }, [displayName]);
-
-  console.log("email", userEmail);
-  console.log("displayName", displayName);
+  }, [isLogin]);
 
   return (
     <form className="flex items-center flex-col gap-4" onSubmit={SignIn}>
