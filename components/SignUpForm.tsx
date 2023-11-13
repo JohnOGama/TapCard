@@ -22,13 +22,9 @@ export interface UserFormData {
 }
 
 const SignUpForm: React.FC = () => {
-  const {
-    displayName,
-    isUserLogin,
-    isLogin,
-    email: userEmail,
-    setUserDetails,
-  } = useMeStore((state) => state);
+  const { isUserLogin, isLogin, isRegister, isUserRegister } = useMeStore(
+    (state) => state
+  );
   const {
     register,
     handleSubmit,
@@ -48,16 +44,13 @@ const SignUpForm: React.FC = () => {
 
       setUser(userCredential);
       await updateProfile(userCredential.user, { displayName: data.FirstName });
-      setUserDetails({
-        displayName: user.user.displayName,
-        email: user.user.email,
-      });
 
-      isUserLogin({ isLogin: true });
+      // isUserLogin({ isLogin: true });
       toast.success("success create an account", {
         position: "bottom-left",
         theme: "dark",
       });
+      isUserRegister({ isRegister: true });
     } catch (error: any) {
       if (error.message) {
         console.log(error.message);
@@ -70,10 +63,13 @@ const SignUpForm: React.FC = () => {
   };
 
   useEffect(() => {
+    if (isRegister) {
+      redirect("/sign-in");
+    }
     if (isLogin) {
       redirect("/");
     }
-  }, []);
+  }, [isRegister, isLogin]);
 
   return (
     <form

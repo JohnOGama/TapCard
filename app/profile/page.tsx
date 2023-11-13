@@ -14,7 +14,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "@/api/auth/auth";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 interface UserFormData {
   FirstName?: string | null;
@@ -27,6 +27,7 @@ interface UserFormData {
 }
 
 export default function Profile() {
+  const router = useRouter();
   const { isLogin, isUserLogin } = useMeStore((state) => state);
 
   const [userProfile, setUserProfile] = useState<UserFormData>({
@@ -69,7 +70,7 @@ export default function Profile() {
       await updateProfile(currentUser!, {
         displayName: userProfile.DisplayName,
       });
-      await updatePassword(currentUser!, userProfile.Password!);
+      router.replace("/");
     } catch (error) {}
   };
 

@@ -13,9 +13,11 @@ import { useMeStore } from "@/store/useMeStore";
 import { toast } from "react-toastify";
 
 const SignInForm: React.FC = () => {
-  const { isLogin, setUserDetails, isUserLogin } = useMeStore((state) => state);
+  const { isLogin, isUserLogin, isRegister } = useMeStore((state) => state);
   const [user, setUser] = useState<any>();
   const router = useRouter();
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -23,6 +25,7 @@ const SignInForm: React.FC = () => {
   const SignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const user = await signInWithEmailAndPassword(auth, email, password);
       setUser(user);
 
@@ -34,6 +37,7 @@ const SignInForm: React.FC = () => {
         isUserLogin({ isLogin: true });
       }
       console.log("user is login", isLogin);
+      setIsLoading(false);
     } catch (error: any) {
       if (error.message) {
         toast.error("Authentication Invalid", {
@@ -82,8 +86,13 @@ const SignInForm: React.FC = () => {
         </Link>
       </div>
 
-      <Button variant="primary" className="w-[350px] mt-0" type="submit">
-        Sign In
+      <Button
+        variant="primary"
+        className={`w-[350px] mt-0 ${isLoading && "bg-primary/80"}`}
+        type="submit"
+        disabled={isLoading}
+      >
+        {isLoading ? "Sign in..." : "Sign In"}
       </Button>
       <p className="text-primary">
         Don&rsquo;t have an account?{" "}
