@@ -76,7 +76,7 @@ export default function Navbar() {
   const [open, setOpen] = useState<boolean>(false);
   const [profileModal, setProfileModal] = useState<boolean>(false);
   const pathname = usePathname();
-  const { isUserLogin, isLogin } = useMeStore((state) => state);
+  const { isUserLogin, isLogin, isUserRegister } = useMeStore((state) => state);
   const [loading, setLoading] = useState<boolean>(false);
   const [userDisplayName, setUserDisplayName] = useState<User>({
     email: "",
@@ -90,7 +90,7 @@ export default function Navbar() {
         email: user?.email,
       });
     });
-  }, []);
+  }, [userDisplayName]);
 
   async function handleLogOut() {
     await signOut(auth);
@@ -103,9 +103,8 @@ export default function Navbar() {
 
     if (isLogin) {
       isUserLogin({ isLogin: false });
-      console.log("logged out", isLogin);
-      router.push("/");
-      router.refresh();
+      isUserRegister({ isRegister: false });
+      console.log("logged out");
     }
   }
 
