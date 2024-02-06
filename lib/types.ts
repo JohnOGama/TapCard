@@ -3,4 +3,5 @@ export type CustomSVGProps = {
     height?: string;
     color?: string;
     className?: string;
+    onClick?: ()=> void;
 };
