@@ -1,11 +1,26 @@
-import React from "react";
+import React, { SVGProps } from "react";
 import { CustomSVGProps } from "@/lib/types";
 
-const ShopCart: React.FC<CustomSVGProps> = ({
+type shopProps = React.SVGAttributes<HTMLOrSVGElement> & {
+  width?: string;
+  height?: string;
+  color?: string;
+  className?: string;
+};
+
+interface MySvgComponentProps extends SVGProps<SVGSVGElement> {
+  width?: string;
+  height?: string;
+  color?: string;
+  className?: string;
+}
+
+const ShopCart: React.FC<MySvgComponentProps> = ({
   width,
   height,
   className,
   color,
+  ...rest
 }) => {
   return (
     <svg
@@ -15,6 +30,7 @@ const ShopCart: React.FC<CustomSVGProps> = ({
       fill="#F1F1F1"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      {...rest}
     >
       <g clipPath="url(#clip0_9_18)">
         <path

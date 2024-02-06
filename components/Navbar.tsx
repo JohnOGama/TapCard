@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // components
 import Button from "@/components/Button";
@@ -26,6 +26,7 @@ import Logo from "./icons/Logo";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/api/auth/auth";
 import { toast } from "react-toastify";
+import AddToCart from "./AddToCart";
 
 const menuVars = {
   close: {
@@ -74,6 +75,7 @@ interface User {
 export default function Navbar() {
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
+  const [showAddToCart, setShowAddToCart] = useState<boolean>(false);
   const [profileModal, setProfileModal] = useState<boolean>(false);
   const pathname = usePathname();
   const { isUserLogin, isLogin, isUserRegister } = useMeStore((state) => state);
@@ -82,6 +84,8 @@ export default function Navbar() {
     email: "",
     displayName: "",
   });
+
+  const dropdownRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -107,6 +111,15 @@ export default function Navbar() {
       console.log("logged out");
     }
   }
+
+  // useEffect(() => {
+  //   let handler = (e: any) => {
+  //     if (dropdownRef.current?.contains(e.target)) {
+  //       setShowAddToCart(!showAddToCart);
+  //     }
+  //   };
+  //   document.addEventListener("mousedown", handler);
+  // }, []);
 
   return (
     <div className="bg-secondary p-5 w-full fixed top-0 z-10 ">
@@ -160,7 +173,6 @@ export default function Navbar() {
                         exit="exit"
                         className=" px-4 lg:w-[100px] py-1  bg-standardBg md:absolute md:top-10 md:-left-[30px] text-secondary"
                       >
-                        <h1>{isLogin}</h1>
                         <Link
                           href="/profile"
                           onClick={() => setProfileModal(!profileModal)}
@@ -173,11 +185,12 @@ export default function Navbar() {
                     )}
                   </AnimatePresence>
                 </div>
-                <div className="relative bg-primary rounded-full h-9 w-9 flex items-center justify-center">
+                <div className="relative cursor-pointer bg-primary rounded-full h-9 w-9 flex items-center justify-center">
                   <ShopCart
                     className="cursor-pointer mt-1"
                     width="24"
                     color="black"
+                    onClick={() => console.log("asd")}
                   />
                   <span className="absolute bg-secondary text-xs text-center rounded-full text-primary h-5 w-5 -top-2 -right-2 ">
                     0
@@ -204,10 +217,13 @@ export default function Navbar() {
                     className="cursor-pointer mt-1"
                     width="24"
                     color="black"
+                    onClick={() => setShowAddToCart(!showAddToCart)}
+                    ref={dropdownRef}
                   />
                   <span className="absolute bg-secondary text-xs text-center rounded-full text-primary h-5 w-5 -top-2 -right-2 ">
                     0
                   </span>
+                  {showAddToCart && <AddToCart />}
                 </div>
               </div>
             )}

@@ -56,6 +56,9 @@ export default function Profile() {
           isVerified: user?.emailVerified,
         });
       });
+    } else {
+      isUserLogin({ isLogin: false });
+      redirect("/");
     }
     if (userProfile.DisplayName && userProfile.EmailAddress) {
       isUserLogin({ isLogin: true });
